@@ -100,6 +100,55 @@ button.action{border:0;border-radius:8px;padding:12px 16px;font-size:15px;font-w
   .print-radar-wrap h3{font-size:10pt;margin:0 0 2px;text-align:left}
   #printRadar svg{width:100%;max-width:460px;height:auto;display:block;margin:0 auto}
 }
+
+/* Habillage graphique harmonisé avec la grille RMM */
+:root{--ink:#183047;--muted:#607386;--line:#d9e2ea;--soft:#f3f7fa;--accent:#176b87;--accent-dark:#12384f;--ok:#287a57}
+body{background:#f7f9fb;color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.container{max-width:1200px;padding:28px 22px 54px}
+header{background:linear-gradient(120deg,#12384f,#176b87);color:#fff;border:0;border-radius:0 0 16px 16px;padding:34px 28px;margin:0 calc((min(100vw,1200px) - 100vw)/2) 22px;}
+.kicker{font-size:.82rem;letter-spacing:.08em}
+h1{font-size:clamp(1.8rem,4vw,2.65rem);line-height:1.12;max-width:100%;margin-bottom:10px}
+.subtitle{color:#e2eef3;font-size:16px;max-width:850px}
+.meta{grid-template-columns:1.4fr .6fr;gap:12px;margin:18px 0}
+.meta label{color:var(--ink)}.meta input,.meta select{border:1px solid #bac9d5;border-radius:8px;padding:9px 11px;color:var(--ink);font:inherit}
+.year-box{border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 13px}
+.year-box select{font-size:15px;font-weight:700;border:1px solid #bac9d5}
+.instructions,.card,.history{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 28px #16324a12}
+.instructions{background:#e8f3f7;border-left:4px solid #176b87;color:#183047;padding:14px 16px}
+.progressbar{background:#e8eef2}.progressbar span{background:#287a57}
+.table-wrap{border:1px solid var(--line);border-radius:12px}
+thead th{background:#eaf1f5;color:#183047}
+.criterion{background:#f5f8fa;color:#183047}
+.choice{border:1px solid var(--line);border-radius:10px;background:#fff;color:#183047}
+.choice .dot{border-color:#8da0ad}
+.choice.selected{color:#183047;border:2px solid #183047;box-shadow:inset 0 0 0 1px #fff}
+.choice.selected .desc{color:#183047!important}
+.choice.selected .dot{border-color:#183047;background:#fff;color:#183047}
+.choice.selected.level1{background:#929292!important;color:#fff!important}
+.choice.selected.level2{background:#2785cf!important;color:#fff!important}
+.choice.selected.level3{background:#42a34a!important;color:#fff!important}
+.choice.selected.level4{background:#f4c644!important;color:#183047!important}
+.choice.selected.level1 .desc,.choice.selected.level2 .desc,.choice.selected.level3 .desc{color:#fff!important}
+.choice.selected.level1 .dot,.choice.selected.level2 .dot,.choice.selected.level3 .dot{border-color:#fff;background:#fff;color:#183047}
+.choice.selected.level4 .desc{color:#183047!important}
+.results{gap:20px}.card{padding:20px}.card h2{color:#183047}
+.actions{gap:10px;margin-top:18px}
+button.action{border-radius:9px;padding:10px 15px;font:inherit;font-weight:650}
+button.primary{background:#176b87;color:#fff}
+button.secondary{background:#eaf0f4;color:#183047}
+button.danger{background:#a33b3b;color:#fff;border:0!important}
+.history{padding:20px}.year-card{border:1px solid var(--line);border-radius:10px}.year-card.current{border:2px solid #176b87;background:#e8f3f7}
+.window-control{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;color:#607386;font-size:14px}
+.window-control select{font:inherit;padding:7px 10px;border:1px solid #bac9d5;border-radius:8px;background:#fff;color:#183047}
+.year-picker{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 14px}
+.year-toggle{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #cbd7e0;border-radius:8px;background:#fff;color:#183047;font-size:13px;cursor:pointer;user-select:none}
+.year-toggle input{accent-color:#176b87;width:15px;height:15px;margin:0}
+.year-toggle:has(input:checked){background:#e8f3f7;border-color:#176b87;font-weight:700}
+.year-picker-note{font-size:12px;color:#607386;margin:-4px 0 12px}
+.status-note{font-size:13px;color:#607386;margin-top:12px}
+@media(max-width:900px){header{margin-left:-22px;margin-right:-22px;border-radius:0;padding:30px 22px}.meta{grid-template-columns:1fr}}
+@media print{header{background:#fff!important;color:#183047!important;margin:0;padding:15px 0;border-radius:0}.subtitle{color:#183047}}
+
 </style>
 </head>
 <body>
@@ -123,6 +172,7 @@ button.action{border:0;border-radius:8px;padding:12px 16px;font-size:15px;font-w
 <div class="instructions">
   <strong>Comment remplir la grille ?</strong><br>
   Pour chacun des 5 critères, <strong>cliquez sur une seule case</strong> correspondant au niveau qui décrit le mieux votre pratique actuelle. Cliquez sur une case : son contenu reste toujours visible et la sélection apparaît en noir. Un seul niveau peut être retenu par critère. <strong>Les 5 critères doivent être renseignés</strong> avant l’export.
+  <strong>Vous pouvez générer un pdf qui peut être ajouté en pièce jointe dans le SIAM dans le pilier « TRAVAIL EN ÉQUIPE » de votre bilan pour votre accréditation.</strong>
 </div>
 
 <div class="progress">
@@ -157,13 +207,15 @@ button.action{border:0;border-radius:8px;padding:12px 16px;font-size:15px;font-w
   </section>
   <section class="card">
     <h2>Diagramme radar</h2>
-    <div style="font-size:13px;color:#666;margin:-6px 0 10px">Les profils complets des 4 dernières années disponibles se superposent. L’année la plus ancienne sort automatiquement de la fenêtre.</div>
+    <div class="window-control"><strong>Années à afficher sur le radar</strong><span>Choisissez librement les années à comparer. Décocher une année masque uniquement sa courbe, sans supprimer son évaluation.</span></div>
+    <div id="yearPicker" class="year-picker" aria-label="Sélection des années à afficher"></div>
+    <div class="year-picker-note">Par défaut : année en cours et cinq années suivantes. Les années déjà évaluées restent proposées dans l'historique.</div>
     <div class="radar-box"><svg id="radar" viewBox="0 0 600 520" role="img" aria-label="Diagramme radar de maturité"></svg></div>
   </section>
 </div>
 
 <section class="card history">
-  <h2>Suivi dans le temps — fenêtre cumulative de 4 ans</h2>
+  <h2>Suivi dans le temps</h2>
   <div id="historyGrid" class="history-grid"></div>
 </section>
 
@@ -184,10 +236,15 @@ button.action{border:0;border-radius:8px;padding:12px 16px;font-size:15px;font-w
   </div>
 </section>
 
-<div class="actions">
-  <button class="action primary" id="printBtn">Exporter / imprimer en PDF</button>
-  <button class="action secondary" id="htmlBtn">Télécharger la synthèse HTML</button>
-  <button class="action danger" id="resetBtn">Réinitialiser</button>
+<div class="card" style="margin-top:18px">
+  <div class="actions" style="margin-top:0">
+    <button class="action primary" id="printBtn">Exporter / imprimer en PDF</button>
+    <button class="action secondary" id="htmlBtn">Télécharger la synthèse HTML</button>
+    <button class="action secondary" id="clearYearBtn">Effacer cette année</button>
+    <button class="action danger" id="resetBtn">Réinitialiser la grille</button>
+  </div>
+  <p class="status-note">Les évaluations sont conservées localement dans ce navigateur. Le PDF et la synthèse HTML contiennent les niveaux sélectionnés, leurs descriptions et le diagramme radar.</p>
+  <div id="status" class="status-note" role="status" aria-live="polite"></div>
 </div>
 </div>
 
@@ -225,22 +282,31 @@ const criteria = [
  ]}
 ];
 
-const YEARS=[2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035];
 const LEVELS=["Initial","Intermédiaire","Avancé","Expert"];
 const LEVEL_COLORS=["#8c8c8c","#2f80c9","#43a047","#f2c94c"];
-const YEAR_COLORS=["#1f77b4","#ff7f0e","#2ca02c","#9467bd"];
+const YEAR_COLORS=["#176b87","#b35b36","#39845c","#8058a5","#b38a21","#54718e"];
 const grid=document.getElementById("grid"), summary=document.getElementById("summary"), progressText=document.getElementById("progressText"), progressBar=document.getElementById("progressBar"), validation=document.getElementById("validation");
-const yearInput=document.getElementById("year"), personInput=document.getElementById("person"), historyGrid=document.getElementById("historyGrid");
-YEARS.forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y;yearInput.appendChild(o)});
+const yearInput=document.getElementById("year"), personInput=document.getElementById("person"), historyGrid=document.getElementById("historyGrid"), yearPicker=document.getElementById("yearPicker");
 let currentYear=Number(localStorage.getItem("maturityYear")||new Date().getFullYear());
-if(!YEARS.includes(currentYear)) currentYear=YEARS[0];
-yearInput.value=currentYear;
 let person=localStorage.getItem("maturityPerson")||""; personInput.value=person;
 const store=()=>JSON.parse(localStorage.getItem("maturityHistory")||"{}");
+// Comme sur la grille RMM : année en cours + cinq suivantes, et toutes les années
+// déjà enregistrées (passées ou futures) restent accessibles sans limite fixe.
+const defaultVisibleYears=()=>Array.from({length:6},(_,i)=>new Date().getFullYear()+i);
+function savedYears(){return Object.keys(store()).map(Number).filter(Number.isFinite)}
+function availableYears(){return [...new Set([...defaultVisibleYears(),...savedYears()])].sort((a,b)=>a-b)}
+function renderYearOptions(){
+  const years=availableYears();yearInput.innerHTML="";
+  years.forEach(y=>{const o=document.createElement("option");o.value=y;o.textContent=y+(y<new Date().getFullYear()?" – historique":y===new Date().getFullYear()?" – année en cours":"");yearInput.appendChild(o)});
+  if(!years.includes(currentYear)){const o=document.createElement("option");o.value=currentYear;o.textContent=currentYear;yearInput.appendChild(o)}
+  yearInput.value=String(currentYear);
+}
+let visibleYears=(()=>{try{const saved=JSON.parse(localStorage.getItem("maturityVisibleYears")||"null");return Array.isArray(saved)?saved.map(Number):defaultVisibleYears()}catch(e){return defaultVisibleYears()}})();
+function renderYearPicker(){yearPicker.innerHTML="";availableYears().forEach(y=>{const label=document.createElement("label");label.className="year-toggle";const cb=document.createElement("input");cb.type="checkbox";cb.checked=visibleYears.includes(y);cb.value=y;cb.setAttribute("aria-label",`Afficher l'année ${y} sur le radar`);cb.onchange=()=>{visibleYears=cb.checked?[...visibleYears,y]:visibleYears.filter(v=>v!==y);localStorage.setItem("maturityVisibleYears",JSON.stringify(visibleYears));update();};const txt=document.createElement("span");txt.textContent=y;label.append(cb,txt);yearPicker.appendChild(label)})}
 const saveStore=(h)=>localStorage.setItem("maturityHistory",JSON.stringify(h));
 let selected=Array(criteria.length).fill(null);
-function loadYear(){const h=store(); const v=h[currentYear]?.values; selected=Array.isArray(v)&&v.length===5?v.slice():Array(5).fill(null); if(h[currentYear]?.person) personInput.value=h[currentYear].person; renderGrid(); update(); renderHistory();}
-function saveYear(){const h=store();h[currentYear]={values:selected.slice(),person:personInput.value||""};saveStore(h);localStorage.setItem("maturityYear",currentYear);localStorage.setItem("maturityPerson",personInput.value||"");}
+function loadYear(){renderYearOptions();const h=store(); const v=h[currentYear]?.values; selected=Array.isArray(v)&&v.length===5?v.slice():Array(5).fill(null); if(h[currentYear]?.person) personInput.value=h[currentYear].person; renderGrid(); update(); renderHistory(); renderYearPicker();}
+function saveYear(){const h=store();h[currentYear]={values:selected.slice(),person:personInput.value||""};saveStore(h);renderYearOptions();renderYearPicker();localStorage.setItem("maturityYear",currentYear);localStorage.setItem("maturityPerson",personInput.value||"");}
 function renderGrid(){grid.innerHTML="";criteria.forEach((c,i)=>{const tr=document.createElement("tr");const td=document.createElement("td");td.className="criterion";td.innerHTML=`${c.name}<small>${c.note}</small>`;tr.appendChild(td);c.levels.forEach((desc,l)=>{const cell=document.createElement("td");cell.className="cell";const b=document.createElement("button");const sel=selected[i]===l+1;b.className="choice level${l+1}"+(sel?" selected":"");b.setAttribute("aria-label",`${c.name}, niveau ${l+1}`);b.innerHTML=`<span class="dot">${l+1}</span><span class="short">${LEVELS[l]}</span><span class="desc">${desc}</span>`;
       b.title=sel?`Niveau retenu : ${LEVELS[l]}`:`Choisir ${LEVELS[l]}`;
       b.onclick=()=>{selected[i]=l+1;validation.classList.remove("show");saveYear();renderGrid();update();renderHistory()};cell.appendChild(b);tr.appendChild(cell)});grid.appendChild(tr)})}
@@ -260,31 +326,38 @@ function update(){
 function updatePrintReport(){
   document.getElementById("printPerson").textContent=personInput.value||"Non renseigné";
   document.getElementById("printYear").textContent=currentYear;
-  document.getElementById("printRadarYear").textContent=`${Math.max(YEARS[0],currentYear-3)}–${currentYear}`;
+  document.getElementById("printRadarYear").textContent=visibleYears.slice().sort((a,b)=>a-b).join(", ")||"Aucune année sélectionnée";
   const lines=document.getElementById("printLines"); lines.innerHTML="";
   criteria.forEach((c,i)=>{const v=selected[i]; if(!v)return; const row=document.createElement("div");row.className="print-line"; const criterion=document.createElement("div");criterion.className="print-criterion";criterion.textContent=c.name; const level=document.createElement("div");level.className=`print-level level${v}`;level.textContent=`${LEVELS[v-1]} · ${v}/4`; const content=document.createElement("div");content.className="print-content";content.textContent=c.levels[v-1];row.append(criterion,level,content);lines.appendChild(row)});
   document.getElementById("printRadar").innerHTML=document.getElementById("radar").outerHTML;
 }
 function polar(cx,cy,r,a){const rad=(a-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)]}
 function pointsFor(values,cx,cy,r){return values.map((v,i)=>polar(cx,cy,r*(v/4),i*72)).map(p=>p.join(",")).join(" ")}
-function historyWindow(){return YEARS.filter(y=>y<=currentYear&&y>=currentYear-3)}
-function completeHistory(){const h=store();return historyWindow().map(y=>({year:y,values:h[y]?.values||[]})).filter(o=>Array.isArray(o.values)&&o.values.length===5&&o.values.every(Boolean))}
+function completeHistory(){const h=store();return visibleYears.slice().sort((a,b)=>a-b).map(y=>({year:y,values:h[y]?.values||[]})).filter(o=>Array.isArray(o.values)&&o.values.length===5&&o.values.every(Boolean))}
 function drawRadar(){
   const svg=document.getElementById("radar");svg.innerHTML="";const cx=300,cy=255,r=175;
-  for(let level=1;level<=4;level++){const poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");poly.setAttribute("points",pointsFor(Array(5).fill(level),cx,cy,r));poly.setAttribute("fill","none");poly.setAttribute("stroke","#d5d8dc");svg.appendChild(poly);const t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("x",cx+6);t.setAttribute("y",cy-r*(level/4)+4);t.setAttribute("font-size","13");t.setAttribute("fill","#666");t.textContent=level;svg.appendChild(t)}
+  // Quatre zones concentriques : les surfaces les plus élevées sont dessinées d'abord,
+  // puis les zones intérieures, afin de conserver l'effet d'anneaux colorés transparents.
+  const zoneColors=["rgba(140,140,140,.24)","rgba(47,128,201,.20)","rgba(67,160,71,.19)","rgba(242,201,76,.22)"];
+  for(let level=4;level>=1;level--){const poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");poly.setAttribute("points",pointsFor(Array(5).fill(level),cx,cy,r));poly.setAttribute("fill",zoneColors[level-1]);poly.setAttribute("stroke","#cbd6de");poly.setAttribute("stroke-width","1.1");svg.appendChild(poly)}
+  for(let level=1;level<=4;level++){const t=document.createElementNS("http://www.w3.org/2000/svg","text");t.setAttribute("x",cx+6);t.setAttribute("y",cy-r*(level/4)+4);t.setAttribute("font-size","13");t.setAttribute("fill","#526575");t.textContent=level;svg.appendChild(t)}
   criteria.forEach((c,i)=>{const [x,y]=polar(cx,cy,r+12,i*72),[x2,y2]=polar(cx,cy,r,i*72);const line=document.createElementNS("http://www.w3.org/2000/svg","line");line.setAttribute("x1",cx);line.setAttribute("y1",cy);line.setAttribute("x2",x2);line.setAttribute("y2",y2);line.setAttribute("stroke","#e1e3e6");svg.appendChild(line);const label=document.createElementNS("http://www.w3.org/2000/svg","text");label.setAttribute("x",x);label.setAttribute("y",y);label.setAttribute("font-size","13");label.setAttribute("font-weight","700");label.setAttribute("fill","#333");label.setAttribute("text-anchor",x<cx-10?"end":x>cx+10?"start":"middle");const words=c.name.split(" ");if(c.name.length>25){const mid=Math.ceil(words.length/2);[words.slice(0,mid).join(" "),words.slice(mid).join(" ")].forEach((w,j)=>{const sp=document.createElementNS("http://www.w3.org/2000/svg","tspan");sp.setAttribute("x",x);sp.setAttribute("dy",j?"16":"0");sp.textContent=w;label.appendChild(sp)})}else label.textContent=c.name;svg.appendChild(label)});
   const profiles=completeHistory();
   if(!profiles.length){const hint=document.createElementNS("http://www.w3.org/2000/svg","text");hint.setAttribute("x",cx);hint.setAttribute("y",cy+210);hint.setAttribute("text-anchor","middle");hint.setAttribute("font-size","14");hint.setAttribute("fill","#777");hint.textContent="Renseignez les 5 critères pour afficher le profil";svg.appendChild(hint);return}
   profiles.forEach((profile,index)=>{const isCurrent=profile.year===currentYear;const color=YEAR_COLORS[index%YEAR_COLORS.length];const poly=document.createElementNS("http://www.w3.org/2000/svg","polygon");poly.setAttribute("points",pointsFor(profile.values,cx,cy,r));poly.setAttribute("fill",isCurrent?"rgba(0,0,0,.035)":"none");poly.setAttribute("stroke",color);poly.setAttribute("stroke-width",isCurrent?"4":"2.5");poly.setAttribute("stroke-linejoin","round");poly.setAttribute("opacity",isCurrent?"1":".8");svg.appendChild(poly);profile.values.forEach((v,i)=>{const [x,y]=polar(cx,cy,r*(v/4),i*72);const circ=document.createElementNS("http://www.w3.org/2000/svg","circle");circ.setAttribute("cx",x);circ.setAttribute("cy",y);circ.setAttribute("r",isCurrent?"5":"3.5");circ.setAttribute("fill",color);circ.setAttribute("stroke","#fff");circ.setAttribute("stroke-width","2");svg.appendChild(circ)})});
   const legend=document.createElementNS("http://www.w3.org/2000/svg","g");legend.setAttribute("transform","translate(430,20)");profiles.forEach((p,i)=>{const color=YEAR_COLORS[i%YEAR_COLORS.length],y=i*22;const l=document.createElementNS("http://www.w3.org/2000/svg","line");l.setAttribute("x1","0");l.setAttribute("y1",y);l.setAttribute("x2","22");l.setAttribute("y2",y);l.setAttribute("stroke",color);l.setAttribute("stroke-width",p.year===currentYear?"4":"2.5");legend.appendChild(l);const tx=document.createElementNS("http://www.w3.org/2000/svg","text");tx.setAttribute("x","30");tx.setAttribute("y",y+5);tx.setAttribute("font-size","12");tx.setAttribute("font-weight",p.year===currentYear?"800":"400");tx.textContent=p.year;legend.appendChild(tx)});svg.appendChild(legend);
 }
-function renderHistory(){const h=store();historyGrid.innerHTML="";YEARS.forEach(y=>{const vals=h[y]?.values||[];const count=vals.filter(Boolean).length;const card=document.createElement("div");card.className="year-card "+(y===currentYear?"current ":"")+(count?"":"empty");card.innerHTML=`<strong>${y}</strong><div class="mini">${count}/5 critères renseignés${count===5?" · complet":""}</div>`;card.onclick=()=>{currentYear=y;yearInput.value=y;loadYear()};card.style.cursor="pointer";historyGrid.appendChild(card)})}
+function renderHistory(){const h=store();historyGrid.innerHTML="";availableYears().forEach(y=>{const vals=h[y]?.values||[];const count=vals.filter(Boolean).length;const card=document.createElement("div");card.className="year-card "+(y===currentYear?"current ":"")+(count?"":"empty");card.innerHTML=`<strong>${y}</strong><div class="mini">${count}/5 critères renseignés${count===5?" · complet":""}</div>`;card.onclick=()=>{currentYear=y;yearInput.value=y;loadYear()};card.style.cursor="pointer";historyGrid.appendChild(card)})}
 function valid(){const ok=selected.every(Boolean);if(!ok)validation.classList.add("show");return ok}
-document.getElementById("printBtn").onclick=()=>{if(!valid())return;window.print()};
-document.getElementById("htmlBtn").onclick=()=>{if(!valid())return;const report=`<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Synthèse ${currentYear}</title><style>body{font-family:Arial;margin:40px;color:#111}h1{font-size:30px}.meta{color:#555}.line{display:grid;grid-template-columns:210px 130px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #ccc}.criterion{font-weight:800}.level{font-weight:800;padding:6px 9px;border-radius:6px}.l1{background:#8c8c8c;color:#fff}.l2{background:#2f80c9;color:#fff}.l3{background:#43a047;color:#fff}.l4{background:#f2c94c;color:#111}.radar{max-width:700px;margin:30px auto}</style></head><body><h1>Grille de maturité — Check-list de sécurité au bloc opératoire</h1><p class="meta"><b>Nom et prénom / équipe :</b> ${escapeHtml(personInput.value||"Non renseigné")} &nbsp; <b>Année :</b> ${currentYear}</p>${criteria.map((c,i)=>`<div class="line"><div class="criterion">${escapeHtml(c.name)}</div><div class="level l${selected[i]}">${LEVELS[selected[i]-1]} · ${selected[i]}/4</div><div>${escapeHtml(c.levels[selected[i]-1])}</div></div>`).join("")}<h2>Diagramme radar — suivi ${Math.max(YEARS[0],currentYear-3)}–${currentYear}</h2><div class="radar">${document.getElementById("radar").outerHTML}</div></body></html>`;const blob=new Blob([report],{type:"text/html;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`synthese-grille-maturite-${currentYear}.html`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
+document.getElementById("printBtn").onclick=()=>{if(!valid())return;const originalTitle=document.title;const person=(personInput.value||"Médecin ou équipe").trim().replace(/[\\/:*?"<>|]/g,"-").replace(/\s+/g," ");document.title=`Grille maturité — Check-list — ${person} — ${currentYear}`;const restoreTitle=()=>{document.title=originalTitle;window.removeEventListener("afterprint",restoreTitle)};window.addEventListener("afterprint",restoreTitle);window.print();setTimeout(restoreTitle,1500)};
+document.getElementById("htmlBtn").onclick=()=>{if(!valid())return;const report=`<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Synthèse ${currentYear}</title><style>body{font-family:Arial;margin:40px;color:#111}h1{font-size:30px}.meta{color:#555}.line{display:grid;grid-template-columns:210px 130px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid #ccc}.criterion{font-weight:800}.level{font-weight:800;padding:6px 9px;border-radius:6px}.l1{background:#8c8c8c;color:#fff}.l2{background:#2f80c9;color:#fff}.l3{background:#43a047;color:#fff}.l4{background:#f2c94c;color:#111}.radar{max-width:700px;margin:30px auto}</style></head><body><h1>Grille de maturité — Check-list de sécurité au bloc opératoire</h1><p class="meta"><b>Nom et prénom / équipe :</b> ${escapeHtml(personInput.value||"Non renseigné")} &nbsp; <b>Année :</b> ${currentYear}</p>${criteria.map((c,i)=>`<div class="line"><div class="criterion">${escapeHtml(c.name)}</div><div class="level l${selected[i]}">${LEVELS[selected[i]-1]} · ${selected[i]}/4</div><div>${escapeHtml(c.levels[selected[i]-1])}</div></div>`).join("")}<h2>Diagramme radar — années ${visibleYears.slice().sort((a,b)=>a-b).join(", ")}</h2><div class="radar">${document.getElementById("radar").outerHTML}</div></body></html>`;const blob=new Blob([report],{type:"text/html;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`synthese-grille-maturite-${currentYear}.html`;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-document.getElementById("resetBtn").onclick=()=>{if(confirm(`Réinitialiser les 5 choix de ${currentYear} ?`)){const h=store();delete h[currentYear];saveStore(h);selected=Array(5).fill(null);renderGrid();update();renderHistory()}};
+document.getElementById("resetBtn").onclick=()=>{if(confirm("Réinitialiser toutes les évaluations de cette grille sur cet appareil ? Cette action est irréversible.")){saveStore({});selected=Array(5).fill(null);renderGrid();update();renderHistory();document.getElementById("status").textContent="Toutes les évaluations de cette grille ont été réinitialisées."}};
 personInput.oninput=()=>{saveYear();renderHistory()};yearInput.onchange=()=>{currentYear=Number(yearInput.value);loadYear()};
+
+document.getElementById("clearYearBtn").onclick=()=>{if(confirm(`Effacer l’évaluation de ${currentYear} ?`)){const h=store();delete h[currentYear];saveStore(h);selected=Array(5).fill(null);renderGrid();update();renderHistory();document.getElementById("status").textContent=`Évaluation ${currentYear} effacée.`}};
+renderYearOptions();
+renderYearPicker();
 loadYear();
 </script>
 </body>
